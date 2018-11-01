@@ -30,7 +30,7 @@ _buckle_autocomplete_find_matches() {
         compgen -abk -A function "${compgen_args[@]}";
         } | sort | uniq -u | sed -e s/"^${exclude}$"// -e s/"${prefix}"// -e s/~.*$//)"
 
-    declare -ga "${target}"="( $results $builtin_results )"
+    eval "${target}"="( $results $builtin_results )"
 }
 
 _buckle_autocomplete_command_arg_completions() {
@@ -58,7 +58,7 @@ _buckle_autocomplete_command_arg_completions() {
         nspath="${nspath}${segment}~"
     done
 
-    declare -ga "${target}"="(${arg_completions[*]})"
+    eval "${target}"="(${arg_completions[*]})"
 }
 
 _buckle_autocomplete_hook() {
